@@ -1,0 +1,36 @@
+[
+  {
+    '$match': {
+      'imdb.rating': {
+        '$gte': 7
+      }, 
+      '$nor': [
+        {
+          'genres': 'Crime'
+        }, {
+          'genres': 'Horror'
+        }
+      ], 
+      '$or': [
+        {
+          'rated': 'PG'
+        }, {
+          'rated': 'G'
+        }
+      ], 
+      '$and': [
+        {
+          'languages': 'English'
+        }, {
+          'languages': 'Japanese'
+        }
+      ]
+    }
+  }, {
+    '$project': {
+      '_id': 0, 
+      'title': 1, 
+      'rated': 1
+    }
+  }
+]
